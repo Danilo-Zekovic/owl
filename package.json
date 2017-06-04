@@ -1,0 +1,52 @@
+{
+  "name": "owl",
+  "version": "1.0.0",
+  "description": "Blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index-local.js",
+    "build": "webpack -p",
+    "test": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danilo-Zekovic/owl.git"
+  },
+  "keywords": [
+    "blog",
+    "help",
+    "owl"
+  ],
+  "author": "Danilo Zekovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danilo-Zekovic/owl/issues"
+  },
+  "homepage": "https://github.com/Danilo-Zekovic/owl#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-input-autosize": "^1.1.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "web-push": "^3.2.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "create-react-class": "^15.5.3",
+    "html-webpack-plugin": "^2.28.0",
+    "prop-types": "^15.5.10",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}

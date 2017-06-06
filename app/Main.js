@@ -4,9 +4,12 @@ import Home from './views/Home'
 import About from './views/About'
 import Posts from './views/Posts'
 
+// old <main
+// <main style={{marginTop:69 + 'px'}} >
+
 // client side routes
 const Main = () => (
-  <main style={{marginTop:69 + 'px'}} className='container'>
+  <main >
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route exact path='/clanci' component={Posts}/>

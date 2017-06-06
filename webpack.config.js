@@ -25,6 +25,10 @@ const config = {
         include: SRC_DIR,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192'
+      }
     ],
   },
   plugins:[HtmlWebpackPluginConfig]

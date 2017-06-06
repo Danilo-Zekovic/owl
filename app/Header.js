@@ -19,6 +19,7 @@ const Header = () => (
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
             <li><Link to='/'>Pocetna/Home</Link></li>
+            <li><Link to='/clanci'>Clanci/Posts</Link></li>
             <li><Link to='/o-nama'>O Nama/About</Link></li>
           </ul>
         </div>

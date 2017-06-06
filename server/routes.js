@@ -1,5 +1,8 @@
 /*
- * server-routes.js - module to provide server-side routing
+ * Danilo Zekovic
+ * routes.js - module to provide server-side routing
+ * routes are in Serbian as the blog itself will be writen in Serbian
+ * however, you can find English equivalent in the comments
 */
 
 export default function ( router, server ) {
@@ -12,8 +15,13 @@ export default function ( router, server ) {
     res.sendFile('index.html', options)
   })
 
-  // About, but routes are in Serbian because the blog is in Serbian
+  // About
   router.get('/o-nama', function(req, res) {
+    res.sendFile('index.html', options)
+  })
+
+  // Posts
+  router.get('/clanci', function(req, res) {
     res.sendFile('index.html', options)
   })
 

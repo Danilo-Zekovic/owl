@@ -1,8 +1,9 @@
 /*
  * Danilo Zekovic
- * css file that links all others
+ * css file that links all other
  *
  */
 
 @import "header.css";
 @import "banner.css";
+@import "footer.css";

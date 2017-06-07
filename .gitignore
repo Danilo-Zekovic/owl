@@ -1,6 +1,7 @@
 # Public
 public/bundle.js
 public/index.html
+public/*.png
 
 # Logs
 logs

@@ -25,4 +25,9 @@ export default function ( router, server ) {
     res.sendFile('index.html', options)
   })
 
+  // Upload
+  router.get('/upload', function(req, res) {
+    res.sendFile('index.html', options)
+  })
+
 }

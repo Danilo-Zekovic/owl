@@ -3,6 +3,7 @@ import { Switch, Route, Link } from 'react-router-dom'
 import Home from './views/Home'
 import About from './views/About'
 import Posts from './views/Posts'
+import Upload from './views/Upload'
 
 // old <main
 // <main style={{marginTop:69 + 'px'}} >
@@ -14,6 +15,7 @@ const Main = () => (
       <Route exact path='/' component={Home}/>
       <Route exact path='/clanci' component={Posts}/>
       <Route exact path='/o-nama' component={About}/>
+      <Route exact path='/upload' component={Upload}/>
 
     </Switch>
   </main>

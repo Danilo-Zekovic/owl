@@ -1,7 +1,9 @@
 import React from 'react'
 import Banner from './components/Banner'
 import Quill from 'quill'
-
+//import {Delta} from 'quill'
+var Delta = Quill.import('delta')
+// Quill toolbar options
 const quillOptions = {
   modules: {
     toolbar: [
@@ -30,6 +32,17 @@ const quillOptions = {
   var editor = new Quill(container)
 }*/
 
+var change = new Delta()
+
+// Save periodically
+setInterval(function() {
+  if (change.length() > 0) {
+    console.log('Saving changes', change);
+    
+    change = new Delta();
+  }
+}, 5*1000);
+
 class Upload extends React.Component {
   //try and init the Quill in the constructor
   constructor(){
@@ -43,6 +56,10 @@ class Upload extends React.Component {
   componentDidMount(){
     console.log("<<<< DID MOUNT >>>>");
     var quill = new Quill('#editor', quillOptions)
+    change = new Delta()
+    quill.on('text-change', function(delta) {
+      change = change.compose(delta);
+    });
   }
 
   render(){

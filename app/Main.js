@@ -4,6 +4,7 @@ import Home from './views/Home'
 import About from './views/About'
 import Posts from './views/Posts'
 import Upload from './views/Upload'
+import PageNotFound from './views/PageNotFound'
 
 // old <main
 // <main style={{marginTop:69 + 'px'}} >
@@ -17,6 +18,7 @@ const Main = () => (
       <Route exact path='/o-nama' component={About}/>
       <Route exact path='/upload' component={Upload}/>
 
+      <Route exact path='*' component={PageNotFound}/>
     </Switch>
   </main>
 )

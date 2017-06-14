@@ -75,6 +75,7 @@ export default React.createClass({
                 <li><Link to='/'>Pocetna/Home</Link></li>
                 <li><Link to='/clanci'>Clanci/Posts</Link></li>
                 <li><Link to='/o-nama'>O Nama/About</Link></li>
+                <li><Link to='/kontakt'>Kontakt</Link></li>
               </ul>
             </div>
 

@@ -30,4 +30,9 @@ export default function ( router, server ) {
     res.sendFile('index.html', options)
   })
 
+  // Contact
+  router.get('/kontakt', function(req, res) {
+    res.sendFile('index.html', options)
+  })
+
 }

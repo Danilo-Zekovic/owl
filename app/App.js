@@ -1,6 +1,6 @@
 import React from 'react'
 import Main from './Main'
-import Header from './HeaderTwo'
+import Header from './Header'
 import Footer from './Footer'
 
 // basic structure, should add footer as well

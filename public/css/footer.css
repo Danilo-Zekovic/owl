@@ -6,3 +6,12 @@
   margin-top: 23px;
   padding: 44px;
 }
+
+.social-media-footer {
+  margin:0 10px;
+  color:#b30000;
+}
+
+.social-media-footer:hover, .social-media-footer:active {
+  color: #e60000;
+}

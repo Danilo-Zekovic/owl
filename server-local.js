@@ -35,10 +35,11 @@ app.use(bodyParser.json())
 
 // graphql server
 // for api calls to graphql
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP(req => ({
   schema:schema,
-  grapigl: true
-}))
+  grapigl: true,
+  pretty:true
+})))
 
 configRoutes(router, server)
 app.use('/', router)

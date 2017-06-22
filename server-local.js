@@ -11,6 +11,10 @@ import configRoutes from './server/routes.js'
 import graphql from 'graphql'
 import graphqlHTTP from 'express-graphql'
 import mongoose from 'mongoose'
+import {
+  graphqlExpress,
+  graphiqlExpress,
+} from 'graphql-server-express'
 
 import schema from './server/graphql'
 
@@ -41,6 +45,10 @@ app.use('/graphql', graphqlHTTP(req => ({
   pretty:true
 })))
 
+app.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql'
+}));
+
 configRoutes(router, server)
 app.use('/', router)
 
@@ -54,7 +62,7 @@ app.get('*', function(req, res){
 mongoose.Promise = global.Promise
 
 // connect to mongo db
-mongoose.connect('mongodb://localhost' + dbName)
+mongoose.connect('mongodb://localhost/' + dbName)
 
 server.listen(3000)
 console.log(

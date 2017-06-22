@@ -1,7 +1,7 @@
 // import querie here
-import test from './test'
+import blogPost from './blog-post'
 
 // export them here as ...querie_name
 export default {
-  test
+  ...blogPost
 };

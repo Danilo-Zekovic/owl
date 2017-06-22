@@ -27,10 +27,8 @@ const quillOptions = {
   theme: 'snow'
 }
 
-/*const initQuill = () => {
-  var container = document.getElementById('editor');
-  var editor = new Quill(container)
-}*/
+let quill;
+let quillPost;
 
 var change = new Delta()
 
@@ -38,7 +36,7 @@ var change = new Delta()
 setInterval(function() {
   if (change.length() > 0) {
     console.log('Saving changes', change);
-    
+
     change = new Delta();
   }
 }, 5*1000);
@@ -48,17 +46,39 @@ class Upload extends React.Component {
   constructor(){
     super()
     this.state= {
-      date:new Date()
+      date:new Date(),
+      
     }
+    this.handleGetContent = this.handleGetContent.bind(this)
 
+  }
+
+  handleGetContent(){
+    //var delta = quill.getContents();
+    console.log("<<<< Get Content Clicked >>>> ");
+    console.log(quill.getContents())
+    console.log(JSON.stringify(quill.getContents()));
+
+    // just testing some stuff
+    let foo = JSON.stringify(quill.getContents())
+    let bar = JSON.parse(foo)
+
+    // create the fake post container
+    quillPost = new Quill('#fake-post', {
+      readOnly:true
+    })
+    // add content to fake post
+    quillPost.setContents(bar)//quill.getContents())
   }
 
   componentDidMount(){
     console.log("<<<< DID MOUNT >>>>");
-    var quill = new Quill('#editor', quillOptions)
+     quill = new Quill('#editor', quillOptions)
+
     change = new Delta()
     quill.on('text-change', function(delta) {
       change = change.compose(delta);
+      //console.log(quill.getContents());
     });
   }
 
@@ -70,6 +90,11 @@ class Upload extends React.Component {
           <h1>Add Post</h1>
           <h2>Comming soon...</h2>
           <div id='editor' ></div>
+          <br/>
+          <button className="btn btn-primary" onClick={this.handleGetContent}>Add To Fake Post Bellow</button>
+          <br/>
+          <h4>Fake Post</h4>
+          <div id='fake-post'></div>
         </div>
       </div>
     )

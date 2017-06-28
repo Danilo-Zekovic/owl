@@ -1,9 +1,10 @@
 import React from 'react'
 import Banner from './components/Banner'
+import owl from './img/owl.png'
 
 const Home = () => (
   <div>
-    <Banner />
+    <Banner owl={owl} />
     <div className="container">
       <h1>Welcome to Owl Blog</h1>
       <h2>Comming soon...</h2>

@@ -5,6 +5,7 @@ import About from './views/About'
 import Posts from './views/Posts'
 import Upload from './views/Upload'
 import Contact from './views/Contact'
+import Post from './views/Post'
 
 import PageNotFound from './views/PageNotFound'
 
@@ -20,6 +21,7 @@ const Main = () => (
       <Route exact path='/o-nama' component={About}/>
       <Route exact path='/upload' component={Upload}/>
       <Route exact path='/kontakt' component={Contact}/>
+      <Route exact path='/clanak/:post' component={Post}/>
 
       <Route exact path='*' component={PageNotFound}/>
     </Switch>

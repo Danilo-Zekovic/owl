@@ -2,7 +2,11 @@ import React from 'react'
 import Banner from './components/Banner'
 import Quill from 'quill'
 //import {Delta} from 'quill'
+import Post from './Post'
+import { Link } from 'react-router-dom'
+
 var Delta = Quill.import('delta')
+
 // Quill toolbar options
 const quillOptions = {
   modules: {
@@ -47,7 +51,8 @@ class Upload extends React.Component {
     super()
     this.state= {
       date:new Date(),
-      
+      post:'Hello World',
+
     }
     this.handleGetContent = this.handleGetContent.bind(this)
 
@@ -61,8 +66,11 @@ class Upload extends React.Component {
 
     // just testing some stuff
     let foo = JSON.stringify(quill.getContents())
+    console.log(foo);
     let bar = JSON.parse(foo)
-
+    this.setState({
+      post:foo
+    })
     // create the fake post container
     quillPost = new Quill('#fake-post', {
       readOnly:true
@@ -95,6 +103,7 @@ class Upload extends React.Component {
           <br/>
           <h4>Fake Post</h4>
           <div id='fake-post'></div>
+          <Link to={'/clanak/' + this.state.post } ><button className="btn btn-primary">Open Post</button></Link>
         </div>
       </div>
     )

@@ -8,7 +8,6 @@ import owl from '../img/owl.png'
 const Banner = () => (
   <div>
     <img src={owl} className="banner-img"/>
-
   </div>
 )
 

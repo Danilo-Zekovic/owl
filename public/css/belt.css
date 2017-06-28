@@ -1,0 +1,14 @@
+.belt {
+  padding: 44px;
+}
+
+/* blue lighter #000080, #000066 #00004d #000033 darker */
+.blue-belt {
+  background-color: #00004d;
+  color:white;
+}
+
+.red-belt {
+  background-color: #b30000;
+  color:white;
+}

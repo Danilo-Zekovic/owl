@@ -4,13 +4,13 @@
 .light {
     font-weight: 400;
 }
-
+/* old blue #000080 */
 .navbar-custom {
     margin-bottom: 0;
     border-bottom: 1px solid rgba(255,255,255,.3);
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    background-color: #000080;
+    background-color: #8cb3d9;
 }
 
 .navbar-custom .navbar-brand {
@@ -80,7 +80,7 @@
     .navbar-custom.top-nav-collapse {
         padding: 0;
         border-bottom: 1px solid rgba(255,255,255,.3);
-        background: #000080;
+        background: #8cb3d9;
     }
 }
 

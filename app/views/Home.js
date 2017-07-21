@@ -12,7 +12,7 @@ const Home = () => (
       <h2 className="text-center">Comming soon...</h2>
     </Belt>
 
-    <Belt color="brown-belt">
+    <Belt color="orange-belt">
       <h3 className="text-center">Nice This actually works</h3>
       <a href="https://github.com/Danilo-Zekovic/owl" target="_blank"><h4>Clone this project from GitHub</h4></a>
     </Belt>

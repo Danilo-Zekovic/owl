@@ -4,7 +4,7 @@
 
 /* blue lighter #8cb3d9 #000080, #000066 #00004d #000033 darker */
 .blue-belt {
-  background-color: #8cb3d9;
+  background-color: #5746d6;
   color:white;
 }
 
@@ -27,5 +27,10 @@
 /* #c68c53 #bf8040 */
 .brown-belt {
   background-color: #bf8040;
+  color:white
+}
+
+.orange-belt {
+  background-color: #df6909;
   color:white
 }

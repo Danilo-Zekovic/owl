@@ -6,7 +6,7 @@ import owl from '../img/owl.png'
 // I will use this graphic of owl just as an example until I get an design of my own
 //<img src={require("../img/owl.png")} className="banner-img"/>
 const Banner = () => (
-  <div>
+  <div className='spacer'>
     <img src={owl} className="banner-img"/>
   </div>
 )

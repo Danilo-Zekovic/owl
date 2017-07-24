@@ -25,7 +25,7 @@ const SRC_DIR = path.resolve(__dirname, 'app');
 const DIST_DIR = path.resolve(__dirname, 'public');
 
 const config = {
-  entry: path.resolve(SRC_DIR, 'index.js'),
+  entry: path.resolve('babel-polyfill', SRC_DIR, 'index.js'),
 
   output: {
     path: DIST_DIR,

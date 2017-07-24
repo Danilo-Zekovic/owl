@@ -41,7 +41,7 @@ app.use(bodyParser.json())
 // for api calls to graphql
 app.use('/graphql', graphqlHTTP(req => ({
   schema:schema,
-  grapigl: true,
+  graphiql: true,
   pretty:true
 })))
 

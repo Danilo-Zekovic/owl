@@ -67,6 +67,7 @@ class Upload extends React.Component {
     // just testing some stuff
     let foo = JSON.stringify(quill.getContents())
     console.log(foo);
+    console.log(foo.length)
     let bar = JSON.parse(foo)
     this.setState({
       post:foo

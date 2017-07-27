@@ -20,6 +20,7 @@ export default {
   },
   resolve (root, params, {}, options) {
     //const projection = getProjection(options.fieldASTs[0]);
+    // Project only those properties the query has specified
     const projection = getProjection(options.fieldNodes[0]);
 
     return BlogPostModel

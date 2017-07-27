@@ -4,6 +4,8 @@ import Quill from 'quill'
 //import {Delta} from 'quill'
 import Post from './Post'
 import { Link } from 'react-router-dom'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 var Delta = Quill.import('delta')
 
@@ -52,10 +54,11 @@ class Upload extends React.Component {
     this.state= {
       date:new Date(),
       post:'Hello World',
+      //mutate:"this.props.mutate",
 
     }
     this.handleGetContent = this.handleGetContent.bind(this)
-
+    this.addPost = this.addPost.bind(this)
   }
 
   handleGetContent(){
@@ -91,6 +94,11 @@ class Upload extends React.Component {
     });
   }
 
+  addPost(){
+    console.log("<<<< ADD POST >>>>");
+    this.props.mutate({variables:{title:'Boo', description:'Say Hi!'}})
+  }
+
   render(){
     return(
       <div>
@@ -104,11 +112,21 @@ class Upload extends React.Component {
           <br/>
           <h4>Fake Post</h4>
           <div id='fake-post'></div>
-          <Link to={'/clanak/' + this.state.post } ><button className="btn btn-primary">Open Post</button></Link>
+          <button onClick={this.addPost}>FOO BAR</button>
+          {/*<Link to={'/clanak/' + this.state.post } ><button className="btn btn-primary">Open Post</button></Link>*/}
         </div>
       </div>
     )
   }
 }
 
-export default Upload
+const addBlogPostMutation = gql`
+  mutation addPost($title: String!, $description: String!) {
+    addBlogPost(data:{title:$title, description:$description})
+  }
+`;
+const AddBlogPostMutation = graphql(
+  addBlogPostMutation
+)(Upload);
+
+export default AddBlogPostMutation

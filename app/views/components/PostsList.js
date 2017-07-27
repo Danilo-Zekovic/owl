@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import Loading from './Loading'
 import ErrorMessage from './Error'
+import { Link } from 'react-router-dom'
 
 const PostsList = ({ data: {loading, error, blogPosts }}) => {
   if (loading) {
@@ -14,7 +15,7 @@ const PostsList = ({ data: {loading, error, blogPosts }}) => {
   }
   return (
     <div className="list-group">
-      { blogPosts.map( post => <a href="#" className="list-group-item" key={post._id}>{post.title}</a> ) }
+      { blogPosts.map( post => <Link to={"/clanak/" + post._id} className="list-group-item" key={post._id}>{post.title}</Link> ) }
     </div>
   );
 };

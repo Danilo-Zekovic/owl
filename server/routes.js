@@ -35,4 +35,10 @@ export default function ( router, server ) {
     res.sendFile('index.html', options)
   })
 
+  // Post
+  //router.get('/clanak*', function(req, res) {
+  router.get('/clanak/:post', function(req, res) {
+    res.sendFile('index.html', options)
+  })
+
 }

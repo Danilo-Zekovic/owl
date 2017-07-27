@@ -10,6 +10,7 @@
 
 /* views */
 @import "upload.css";
+@import "post.css";
 
 /* components */
 @import "banner.css";

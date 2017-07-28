@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import PostHeaderForm from './components/PostHeaderForm'
+
 var Delta = Quill.import('delta')
 
 // Quill toolbar options
@@ -53,12 +55,15 @@ class Upload extends React.Component {
     super()
     this.state= {
       date:new Date(),
-      post:'Hello World',
-      //mutate:"this.props.mutate",
-
+      post:'',
+      title:'',
+      subTitle:'',
+      author:'',
+      description:'',
     }
     this.handleGetContent = this.handleGetContent.bind(this)
     this.addPost = this.addPost.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   handleGetContent(){
@@ -66,6 +71,8 @@ class Upload extends React.Component {
     console.log("<<<< Get Content Clicked >>>> ");
     console.log(quill.getContents())
     console.log(JSON.stringify(quill.getContents()));
+
+    console.log(this.state.date);
 
     // just testing some stuff
     let foo = JSON.stringify(quill.getContents())
@@ -94,18 +101,50 @@ class Upload extends React.Component {
     });
   }
 
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    console.log(target);
+    console.log("<<<< INPUT CHANGE >>>>")
+    console.log(this.state);
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  // this adds the stuff to the db
   addPost(){
+    // or i should be able to replace it with just this.state
+    let newPost = {
+      title:this.title,
+      subTitle:this.subTitle,
+      author:this.author,
+      description:this.description,
+    }
     console.log("<<<< ADD POST >>>>");
     this.props.mutate({variables:{title:'Boo', description:'Say Hi!'}})
   }
 
   render(){
+    // group this values to pass them as one object
+    let formVal = {
+      title:this.title,
+      subTitle:this.subTitle,
+      author:this.author
+    }
+
     return(
       <div>
         <Banner />
         <div className='container'>
           <h1>Add Post</h1>
-          <h2>Comming soon...</h2>
+          <PostHeaderForm
+            value={formVal}
+            onChange={this.handleInputChange} />
+
           <div id='editor' ></div>
           <br/>
           <button className="btn btn-primary" onClick={this.handleGetContent}>Add To Fake Post Bellow</button>

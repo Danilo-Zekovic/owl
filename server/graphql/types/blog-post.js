@@ -17,6 +17,9 @@ export default new GraphQLObjectType({
     },
     description: {
       type: GraphQLString
-    }
+    },
+    post: {type:GraphQLString},
+    subTitle: {type:GraphQLString},
+    author: {type:GraphQLString}
   }
 });

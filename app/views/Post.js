@@ -11,7 +11,7 @@ import ErrorMessage from './components/Error'
 
 let quill
 
-class PostFoo extends React.Component {
+class PostBody extends React.Component {
 
   constructor(props){
     super(props)
@@ -28,23 +28,25 @@ class PostFoo extends React.Component {
       readOnly:true
     })
 
-    quill.setContents(JSON.parse(this.props.match.params.post))
+    //quill.setContents(JSON.parse(this.props.match.params.post))
+    quill.setContents(JSON.parse(this.props.value))
   }
 
   render(){
     return (
-      <div>
-        <Belt color="orange-belt">
+      <div className="container">
+        {/*<Belt color="orange-belt">
           <h1 className="text-center post-title">Nice This actually works</h1>
           <h3 className="text-center post-sub-title">Nice This actually works</h3>
-        </Belt>
+        </Belt>*/}
         {/*<h3>Post: {this.props.match.params.post}</h3>*/}
-        <div id="post" className="container" />
+        <div id="post" />
       </div>
     )
   }
 }
 
+// the whole Post View. Post body see abowe
 const Post = ({ data: {loading, error, blogPost }}) => {
   if (loading) {
     return <Loading/>;
@@ -52,15 +54,14 @@ const Post = ({ data: {loading, error, blogPost }}) => {
   if (error) {
     return <ErrorMessage>{error.message}</ErrorMessage>;
   }
+
   return (
     <div>
       <Belt color="orange-belt">
         <h1 className="text-center post-title">{blogPost.title}</h1>
-        <h3 className="text-center post-sub-title">Nice This actually works</h3>
+        <h3 className="text-center post-sub-title">{blogPost.subTitle}</h3>
       </Belt>
-      <div className="container">
-        {blogPost.description}
-      </div>
+      <PostBody value={blogPost.post} />
     </div>
   );
 };
@@ -71,6 +72,9 @@ const PostQuery = gql`
       _id
       title
       description
+      post
+      subTitle
+      author
     }
   }
 `

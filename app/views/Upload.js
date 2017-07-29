@@ -59,7 +59,7 @@ class Upload extends React.Component {
       title:'',
       subTitle:'',
       author:'',
-      description:'',
+      description:'Something',
     }
     this.handleGetContent = this.handleGetContent.bind(this)
     this.addPost = this.addPost.bind(this)
@@ -117,32 +117,32 @@ class Upload extends React.Component {
 
   // this adds the stuff to the db
   addPost(){
+
+    let quillPostStr = JSON.stringify(quill.getContents())
+    this.setState({
+      post: quillPostStr
+    })
+
     // or i should be able to replace it with just this.state
     let newPost = {
-      title:this.title,
-      subTitle:this.subTitle,
-      author:this.author,
-      description:this.description,
+      title:this.state.title,
+      subTitle:this.state.subTitle,
+      author:this.state.author,
+      description:this.state.description,
+      post:this.state.post
     }
     console.log("<<<< ADD POST >>>>");
-    this.props.mutate({variables:{title:'Boo', description:'Say Hi!'}})
+    this.props.mutate({variables:this.state})
   }
 
   render(){
-    // group this values to pass them as one object
-    let formVal = {
-      title:this.title,
-      subTitle:this.subTitle,
-      author:this.author
-    }
-
     return(
       <div>
         <Banner />
         <div className='container'>
           <h1>Add Post</h1>
           <PostHeaderForm
-            value={formVal}
+            value={this.state}
             onChange={this.handleInputChange} />
 
           <div id='editor' ></div>
@@ -151,7 +151,7 @@ class Upload extends React.Component {
           <br/>
           <h4>Fake Post</h4>
           <div id='fake-post'></div>
-          <button onClick={this.addPost}>FOO BAR</button>
+          <button onClick={this.addPost}>Save Post</button>
           {/*<Link to={'/clanak/' + this.state.post } ><button className="btn btn-primary">Open Post</button></Link>*/}
         </div>
       </div>
@@ -160,8 +160,14 @@ class Upload extends React.Component {
 }
 
 const addBlogPostMutation = gql`
-  mutation addPost($title: String!, $description: String!) {
-    addBlogPost(data:{title:$title, description:$description})
+  mutation addPost($title: String!, $description: String!, $subTitle:String, $post:String, $author:String) {
+    addBlogPost(data:{
+      title:$title,
+      description:$description,
+      subTitle:$subTitle,
+      post:$post,
+      author:$author
+    })
   }
 `;
 const AddBlogPostMutation = graphql(

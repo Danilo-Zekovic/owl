@@ -5,9 +5,19 @@ var blogPostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  subTitle: {
+    type:String
+  },
   description: {
     type: String
+  },
+  post: {
+    type: String
+  },
+  author: {
+    type: String
   }
+
 });
 
 export default mongoose.model('BlogPost', blogPostSchema);

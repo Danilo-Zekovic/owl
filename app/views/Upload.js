@@ -59,7 +59,8 @@ class Upload extends React.Component {
       title:'',
       subTitle:'',
       author:'',
-      description:'Something',
+      description:'',
+      posted:false,
     }
     this.handleGetContent = this.handleGetContent.bind(this)
     this.addPost = this.addPost.bind(this)
@@ -67,17 +68,8 @@ class Upload extends React.Component {
   }
 
   handleGetContent(){
-    //var delta = quill.getContents();
-    console.log("<<<< Get Content Clicked >>>> ");
-    console.log(quill.getContents())
-    console.log(JSON.stringify(quill.getContents()));
-
-    console.log(this.state.date);
-
     // just testing some stuff
     let foo = JSON.stringify(quill.getContents())
-    console.log(foo);
-    console.log(foo.length)
     let bar = JSON.parse(foo)
     this.setState({
       post:foo
@@ -122,15 +114,6 @@ class Upload extends React.Component {
     this.setState({
       post: quillPostStr
     })
-
-    // or i should be able to replace it with just this.state
-    let newPost = {
-      title:this.state.title,
-      subTitle:this.state.subTitle,
-      author:this.state.author,
-      description:this.state.description,
-      post:this.state.post
-    }
     console.log("<<<< ADD POST >>>>");
     this.props.mutate({variables:this.state})
   }
@@ -160,13 +143,20 @@ class Upload extends React.Component {
 }
 
 const addBlogPostMutation = gql`
-  mutation addPost($title: String!, $description: String!, $subTitle:String, $post:String, $author:String) {
+  mutation addPost(
+    $title: String!,
+    $description: String!,
+    $subTitle:String, $post:String,
+    $author:String,
+    $posted:Boolean
+  ){
     addBlogPost(data:{
       title:$title,
       description:$description,
       subTitle:$subTitle,
       post:$post,
-      author:$author
+      author:$author,
+      posted:$posted
     })
   }
 `;

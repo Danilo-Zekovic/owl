@@ -16,8 +16,11 @@ var blogPostSchema = new mongoose.Schema({
   },
   author: {
     type: String
+  },
+  posted: {
+    type:Boolean,
+    default:false
   }
-
 });
 
 export default mongoose.model('BlogPost', blogPostSchema);

@@ -3,7 +3,8 @@ import {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLBoolean
 } from 'graphql';
 
 export default new GraphQLObjectType({
@@ -20,6 +21,7 @@ export default new GraphQLObjectType({
     },
     post: {type:GraphQLString},
     subTitle: {type:GraphQLString},
-    author: {type:GraphQLString}
+    author: {type:GraphQLString},
+    posted: {type:GraphQLBoolean}
   }
 });

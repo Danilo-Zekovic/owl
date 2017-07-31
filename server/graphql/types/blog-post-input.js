@@ -1,7 +1,8 @@
 import {
   GraphQLInputObjectType,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLBoolean
 } from 'graphql';
 
 export default new GraphQLInputObjectType({
@@ -12,6 +13,7 @@ export default new GraphQLInputObjectType({
     description: {type: GraphQLString},
     post: {type:GraphQLString},
     subTitle: {type:GraphQLString},
-    author: {type:GraphQLString}
+    author: {type:GraphQLString},
+    posted: {type:GraphQLBoolean}
   }
 });

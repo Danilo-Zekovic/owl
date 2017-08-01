@@ -22,8 +22,12 @@ export default {
     // Project only those properties the query has specified
     const projection = getProjection(options.fieldNodes[0]);
 
-    // works for searching for a string in multiple fields/documents
-    const searchRegex = new RegExp(params.keywords, "i");
+    /*
+     * argument(params.keywords) is a string of values separated by comma
+     * keywords is regex expression looking for multiple strings
+     */
+    let keywords = "(" + params.keywords.split(',').join("|") + ")"
+    const searchRegex = new RegExp(keywords, "i");
 
     return BlogPostModel
       .find({ $or: [ /*{ taglist: searchRegex } ,*/ { title: searchRegex },

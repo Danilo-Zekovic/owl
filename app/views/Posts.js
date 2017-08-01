@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from './components/Banner'
 import PostsListWithData from './components/PostsList'
+import UserPostSearch from './components/UserPostSearch'
 
 const Posts = () => (
   <div>
@@ -10,6 +11,7 @@ const Posts = () => (
       <h2>Comming soon...</h2>
       <p>Here we will see pick and choose posts to read</p>
       <PostsListWithData/>
+      <UserPostSearch/>
     </div>
   </div>
 )

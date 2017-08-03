@@ -7,7 +7,6 @@ import SearchBar from './SearchBar'
 import Loading from './Loading'
 import ErrorMessage from './Error'
 import SearchPostsList from './SearchPostsList'
-import SearchFoo from './SearchFoo'
 
 class UserPostSearch extends React.Component {
   constructor(){

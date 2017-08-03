@@ -8,9 +8,8 @@ const Posts = () => (
     <Banner/>
     <div className='container'>
       <h1>Posts</h1>
-      <h2>Comming soon...</h2>
       <p>Here we will see pick and choose posts to read</p>
-      <PostsListWithData/>
+      <PostsListWithData/>{/* display last 5 published posts. curently retruns all of them */}
       <UserPostSearch/>
     </div>
   </div>

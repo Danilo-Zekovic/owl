@@ -25,6 +25,7 @@ const PostsQuery = gql`
     blogPosts{
       _id
       title
+      description
     }
   }
 `

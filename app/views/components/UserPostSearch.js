@@ -19,17 +19,19 @@ class UserPostSearch extends React.Component {
     this.handleOnChange = this.handleOnChange.bind(this)
     this.handleSearchClick = this.handleSearchClick.bind(this)
   }
-
+  // handles change in any of the inputs
   handleOnChange(event){
-    const target = event.target;
+    const target = event.target; // get the element that had the change
+    // value in input
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const name = target.name; // name of the element
 
     this.setState({
       [name]: value
     });
   }
 
+  // on search btn click set the keywords to serched paramaters
   handleSearchClick(){
     this.setState({
       keywords:this.state.searchBar
@@ -45,16 +47,16 @@ class UserPostSearch extends React.Component {
           onChange={this.handleOnChange}
           onClick={this.handleSearchClick}
           />
+        {/* display list only when it was searched for list */}
         {(this.state.keywords != '') ? <SearchPostsList
           keywords={this.state.keywords}
           /> : null}
-
       </div>
     );
   }
 };
 
-const PostSearchQuery = gql`
+/*const PostSearchQuery = gql`
   query PostSearchQuery($keywords:String!){
     searchPosts(keywords:$keywords){
       _id
@@ -73,6 +75,6 @@ const PostSearchWithData = graphql(PostSearchQuery, {
       keywords:"asd"
     }
   })
-})(UserPostSearch)
+})(UserPostSearch)*/
 
 export default UserPostSearch

@@ -1,6 +1,7 @@
 import React from 'react'
 
-function SearchFoo(props) {
+// Simple input bar with the button
+function SearchBar(props) {
   return (
     <div className="row">
       <div className="col-md-4">
@@ -26,4 +27,4 @@ function SearchFoo(props) {
   )
 }
 
-export default SearchFoo
+export default SearchBar

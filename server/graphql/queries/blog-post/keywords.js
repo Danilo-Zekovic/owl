@@ -25,6 +25,7 @@ export default {
     /*
      * argument(params.keywords) is a string of values separated by comma
      * keywords is regex expression looking for multiple strings
+     * case insesitive
      */
     let keywords = "(" + params.keywords.split(',').join("|") + ")"
     const searchRegex = new RegExp(keywords, "i");

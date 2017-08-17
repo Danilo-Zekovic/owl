@@ -3,5 +3,6 @@ export default {
   "PRIVATE_KEY":"",
   "PRIVATE_KEY_PATH":"",
   "CERTIFICATE_PATH":"",
-  "EMAIL":""
+  "EMAIL":"",
+  "SECRET":""
 }

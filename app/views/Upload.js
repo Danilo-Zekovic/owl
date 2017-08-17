@@ -146,7 +146,8 @@ const addBlogPostMutation = gql`
   mutation addPost(
     $title: String!,
     $description: String!,
-    $subTitle:String, $post:String,
+    $subTitle:String,
+    $post:String,
     $author:String,
     $posted:Boolean
   ){

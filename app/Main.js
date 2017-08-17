@@ -6,6 +6,7 @@ import Posts from './views/Posts'
 import Upload from './views/Upload'
 import Contact from './views/Contact'
 import Post from './views/Post'
+import Authentication from './views/Authentication'
 
 import PageNotFound from './views/PageNotFound'
 
@@ -22,6 +23,7 @@ const Main = () => (
       <Route exact path='/upload' component={Upload}/>
       <Route exact path='/kontakt' component={Contact}/>
       <Route exact path='/clanak/:post' component={Post}/>
+      <Route exact path='/login' component={Authentication}/>
 
       <Route exact path='*' component={PageNotFound}/>
     </Switch>

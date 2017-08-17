@@ -11,6 +11,13 @@ import configRoutes from './server/routes.js'
 import graphql from 'graphql'
 import graphqlHTTP from 'express-graphql'
 import mongoose from 'mongoose'
+
+import passport from 'passport'
+import flash from 'connect-flash'
+import session from 'express-session'
+import cookieParser from 'cookie-parser'
+//import setUpPassport from './server/setuppassport.js'
+
 import {
   graphqlExpress,
   graphiqlExpress,
@@ -36,6 +43,17 @@ app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
+
+// setting up for authentication
+app.use(cookieParser())
+app.use(session({
+  secret:"onroieun48j9u45n98gnn9>*H<&HUEB(Unuwnefjdns&%",
+  resave:true,
+  saveUninitialized:true
+}))
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
 
 // graphql server
 // for api calls to graphql
@@ -63,6 +81,9 @@ mongoose.Promise = global.Promise
 
 // connect to mongo db
 mongoose.connect('mongodb://localhost/' + dbName)
+
+// passport authentication
+//setUpPassport()
 
 server.listen(3000)
 console.log(

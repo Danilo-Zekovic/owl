@@ -8,6 +8,7 @@ const Footer = () => (
       <p>Copyright © Anonimus 2017</p>
       <p>email@gmail.com</p>
       <p><Link to="/upload">Blog</Link></p>
+      <p><Link to="/login">Auth</Link></p>
       <div>
         <a href="https://www.facebook.com" className="social-media-footer" target="_blank">
           <i className="fa fa-facebook-square fa-3x" aria-hidden="true"></i>

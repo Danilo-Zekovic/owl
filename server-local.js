@@ -25,7 +25,7 @@ import {
 
 import schema from './server/graphql'
 
-import certificateKeys from './KEY_RING.js'
+//import certificateKeys from './KEY_RING.js'
 
 const dbName = 'owl'
 

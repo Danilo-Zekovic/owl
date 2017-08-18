@@ -9,6 +9,24 @@ class Authentication extends React.Component {
       username:"",
       password:"",
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleLoginClick = this.handleLoginClick.bind(this)
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleLoginClick(event){
+    console.log(this.state)
+    // after loging in use Redirect to go to the requested page
+    // that page view will be passed down by props
   }
 
   render(){
@@ -29,7 +47,7 @@ class Authentication extends React.Component {
                     type="text"
                     className="form-control"
                     value={this.state.username}
-                    onChange={this.onChange} />
+                    onChange={this.handleInputChange} />
                 </div>
               </div>
               <div className="row">
@@ -40,8 +58,11 @@ class Authentication extends React.Component {
                     type="password"
                     className="form-control"
                     value={this.state.password}
-                    onChange={this.onChange} />
+                    onChange={this.handleInputChange} />
                 </div>
+              </div>
+              <div className="row">
+                <a className="btn btn-primary" onClick={this.handleLoginClick}>Login/Prijavi se</a>
               </div>
             </form>
           </div>

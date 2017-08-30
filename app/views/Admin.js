@@ -1,9 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import Banner from './components/Banner'
 import Loading from './components/Loading'
 import Login from './components/Login'
+import Belt from './components/Belt'
+
+const AdminHeader = () => (
+  <Belt color="orange-belt">
+    <h2 className="text-center post-title">Admin Portal</h2>
+  </Belt>
+)
 
 class Admin extends React.Component {
 
@@ -59,21 +65,21 @@ class Admin extends React.Component {
     if(this.state.loading){
       return (
         <div>
-          <Banner/>
+          <AdminHeader/>
           <Loading/>
         </div>
       )
     }else if (this.state.isLoggedIn) {
       return (
         <div>
-          <Banner/>
+          <AdminHeader/>
           <h1>Welcome Foo</h1>
         </div>
       )
     }else{
       return (
         <div>
-          <Banner/>
+          <AdminHeader/>
           <Login handleLogin={this.checkLogin}/>
         </div>
       )

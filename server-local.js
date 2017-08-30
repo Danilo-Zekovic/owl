@@ -1,10 +1,10 @@
 // Test server so that one can run the app localy at localhost
-import fs from 'fs'
 import http from 'http'
 import https from 'https'
 import express from 'express'
 import path from 'path'
 import cors from 'cors'
+import fs from 'fs'
 import compression from 'compression'
 import bodyParser from 'body-parser'
 import configRoutes from './server/routes.js'
@@ -16,7 +16,10 @@ import passport from 'passport'
 import flash from 'connect-flash'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
-//import setUpPassport from './server/setuppassport.js'
+import mongoStoreFactory from 'connect-mongo'
+import setUpPassport from './server/setuppassport.js'
+// persistence store of our session
+const MongoStore = mongoStoreFactory(session);
 
 import {
   graphqlExpress,
@@ -36,24 +39,38 @@ const app = express(),
 const server = http.createServer(app)
 
 // compress outbound service
-app.use(compression())
+//app.use(compression())
 
 // cors allows fetching images on local-hosted server
-app.use(cors())
+/*app.use(cors({
+  credentials: true // <-- REQUIRED backend setting
+}))*/
+
+// configure mongoose to use native promises
+mongoose.Promise = global.Promise
+
+// connect to mongo db
+mongoose.connect('mongodb://localhost/' + dbName)
+
+setUpPassport()
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 
-// setting up for authentication
-app.use(cookieParser())
 app.use(session({
+  store:new MongoStore({ mongooseConnection: mongoose.connection }),
   secret:"onroieun48j9u45n98gnn9>*H<&HUEB(Unuwnefjdns&%",
   resave:true,
-  saveUninitialized:true
+  saveUninitialized:true//,
+  /*cookie:{
+    path:"/"
+  }*/
 }))
-app.use(flash())
-app.use(passport.initialize())
-app.use(passport.session())
+
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // graphql server
 // for api calls to graphql
@@ -75,15 +92,6 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.get('*', function(req, res){
   res.sendFile(path.join(__dirname, 'public','index.html'));
 })
-
-// configure mongoose to use native promises
-mongoose.Promise = global.Promise
-
-// connect to mongo db
-mongoose.connect('mongodb://localhost/' + dbName)
-
-// passport authentication
-//setUpPassport()
 
 server.listen(3000)
 console.log(

@@ -15,21 +15,31 @@ module.exports = function() {
       done(err, user)
     })
   })
-}
 
-passport.use("login", new LocalStrategy(function(username, password, done){
-  User.findOne({username:username}, function(err, user){
-    if(err){return done(err)}
-    if(!user){
-      return done(null, false, {message:"No user has that username"})
-    }
-    user.checkPassword(password, function(err, isMatch){
+  /*
+   * use local Strategy
+   */
+  passport.use("login", new LocalStrategy(function(username, password, done){
+    User.findOne({username:username}, function(err, user){
       if(err){return done(err)}
-      if(isMatch){
-        return done(null, user)
-      }else{
-        return done(null, false, {message:"invalid password."})
+      // if no user
+      if(!user){
+        return done(null, false, {message:"No user has that username"})
       }
+      //user found
+      user.checkPassword(password, function(err, isMatch){
+        console.log("<<<< checkPassword >>>>");
+        console.log(err);
+        console.log(isMatch);
+        if(err){return done(err)}
+        // password good
+        if(isMatch){
+          console.log(user);
+          return done(null, user)
+        }else{
+          return done(null, false, {message:"invalid password."})
+        }
+      })
     })
-  })
-}))
+  }))
+}

@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 import Banner from './components/Banner'
 
 class Authentication extends React.Component {
@@ -11,6 +13,8 @@ class Authentication extends React.Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleLoginClick = this.handleLoginClick.bind(this)
+    this.authenticate = this.authenticate.bind(this)
+    this.checkLogin = this.checkLogin.bind(this)
   }
 
   handleInputChange(event) {
@@ -27,6 +31,81 @@ class Authentication extends React.Component {
     console.log(this.state)
     // after loging in use Redirect to go to the requested page
     // that page view will be passed down by props
+    console.log("<<<< AUTHENTICATE CLICKED >>>>");
+    console.log(this.state)
+    axios({
+      method: 'post',
+		  url: '/login',
+		  data: this.state
+    })
+    .then(response => {
+      console.log(response);
+			if (response.data.success) {
+        console.log("<<<< SUCCESS >>>>");
+        console.log(response.data);
+        sessionStorage.setItem('loggedin', true);
+			} else {
+        console.log("<<<< SOME ERROR >>>>");
+        console.log(response.data);
+			}
+		})
+		.catch(function (response) {
+		  if (response instanceof Error) {
+		    // Something happened in setting up the request that triggered an Error
+		    console.log('Error', response.message);
+		  }
+		})
+  }
+
+  authenticate(event){
+    console.log("<<<< AUTHENTICATE CLICKED >>>>");
+    console.log(this.state)
+    axios({
+      method: 'post',
+		  url: '/login',
+		  data: this.state
+    })
+    .then(response => {
+      console.log(response);
+			if (response.data.success) {
+				//dispatch(loginSuccess(data))
+				// use browserHistory singleton to control navigation. Will generate a
+				// state change for time-traveling as we are using the react-router-redux package
+				//browserHistory.push(successPath)
+        console.log("<<<< SUCCESS >>>>");
+        console.log(response.data);
+        sessionStorage.setItem('loggedin', true);
+        //<Redirect to='/kontakt' />
+			} else {
+				//dispatch(loginError())
+				//let loginMessage = response.data.message
+				//return loginMessage
+        console.log("<<<< SOME ERROR >>>>");
+        console.log(response.data);
+			}
+		})
+		.catch(function (response) {
+		  if (response instanceof Error) {
+		    // Something happened in setting up the request that triggered an Error
+		    console.log('Error', response.message);
+		  }
+		})
+  }
+
+  checkLogin(){
+    axios({
+      method: 'get',
+		  url: '/loggedin'
+    })
+    .then(function(response){
+      console.log(response);
+    })
+    .catch(function (response) {
+		  if (response instanceof Error) {
+		    // Something happened in setting up the request that triggered an Error
+		    console.log('Error', response.message);
+		  }
+		})
   }
 
   render(){
@@ -67,6 +146,8 @@ class Authentication extends React.Component {
             </form>
           </div>
         </div>
+        <button onClick={this.authenticate} >Testing stuff</button>
+        <button onClick={this.checkLogin} >loged in</button>
       </div>
     )
   }

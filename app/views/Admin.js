@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import Loading from './components/Loading'
 import Login from './components/Login'
 import Belt from './components/Belt'
+import AdminPortal from './AdminPortal'
 
 const AdminHeader = () => (
   <Belt color="orange-belt">
@@ -62,18 +63,19 @@ class Admin extends React.Component {
 
   render(){
     // display loading until component finds out is anyone loggedin
-    if(this.state.loading){
+    // TODO remove added logic for auth to work again
+    if(this.state.loading && false){
       return (
         <div>
           <AdminHeader/>
           <Loading/>
         </div>
       )
-    }else if (this.state.isLoggedIn) {
+    }else if (this.state.isLoggedIn || true) {
       return (
         <div>
           <AdminHeader/>
-          <h1>Welcome Foo</h1>
+          <AdminPortal/>
         </div>
       )
     }else{

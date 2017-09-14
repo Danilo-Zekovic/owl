@@ -11,6 +11,7 @@
 /* views */
 @import "upload.css";
 @import "post.css";
+@import "sidemenu.css";
 
 /* components */
 @import "banner.css";

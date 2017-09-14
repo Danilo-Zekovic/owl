@@ -1,7 +1,6 @@
 /**
   * Danilo Zekovic
   * Navigation bar that will appear on every views
-  * Planing to move the logic to Header.js
   */
 
 import React from 'react'

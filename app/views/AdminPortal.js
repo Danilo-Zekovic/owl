@@ -3,6 +3,7 @@ import Loading from './components/Loading'
 import Belt from './components/Belt'
 import Upload from './components/NewPost'
 import PostsList from './components/PostsList'
+import Logout from './components/Logout'
 
 class AdminPortal extends React.Component {
 
@@ -54,6 +55,7 @@ class AdminPortal extends React.Component {
             <a href="#" onClick={() => this.setState({adminView:<Loading/>})}>Pregled</a>
             <a href="#" onClick={() => this.setState({adminView:<PostsList/>})}>Clanci</a>
             <a href="#" onClick={() => this.setState({adminView:<Upload/>})}>Napisi Clanak</a>
+            <a href="#" onClick={() => this.setState({adminView:<Logout handleLogout={this.props.handleLogout}/>})}>Logout</a>
           </div>
 
           <div className="col-md-10 col-sm-12">

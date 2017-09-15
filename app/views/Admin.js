@@ -7,7 +7,7 @@ import Belt from './components/Belt'
 import AdminPortal from './AdminPortal'
 
 const AdminHeader = () => (
-  <Belt color="orange-belt">
+  <Belt color="blue-belt">
     <h2 className="text-center post-title">Admin Portal</h2>
   </Belt>
 )
@@ -64,18 +64,18 @@ class Admin extends React.Component {
   render(){
     // display loading until component finds out is anyone loggedin
     // TODO remove added logic for auth to work again
-    if(this.state.loading && false){
+    if(this.state.loading /*&& false*/){
       return (
         <div>
           <AdminHeader/>
           <Loading/>
         </div>
       )
-    }else if (this.state.isLoggedIn || true) {
+    }else if (this.state.isLoggedIn /*|| true*/) {
       return (
         <div>
           <AdminHeader/>
-          <AdminPortal/>
+          <AdminPortal handleLogout={this.checkLogin}/>
         </div>
       )
     }else{

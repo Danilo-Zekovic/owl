@@ -74,10 +74,10 @@ export default function ( router, server ) {
   });*/
 
   // route to log out
-  /*router.post('/logout', function(req, res){
+  router.post('/logout', function(req, res){
     req.logOut();
-    res.send(200);
-  });*/
+    res.sendStatus(200);
+  });
 
   router.post('/login', function(req, res, next){
     passport.authenticate("login", function(err, user) {

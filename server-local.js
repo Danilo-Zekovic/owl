@@ -50,7 +50,9 @@ const server = http.createServer(app)
 mongoose.Promise = global.Promise
 
 // connect to mongo db
-mongoose.connect('mongodb://localhost/' + dbName)
+mongoose.connect('mongodb://localhost/' + dbName, {
+  useMongoClient:true  // requiered by the new version of MongoDB http://mongoosejs.com/docs/connections.html#use-mongo-client
+})
 
 setUpPassport()
 

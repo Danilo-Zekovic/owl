@@ -1,5 +1,5 @@
 import React from 'react'
-import owl from '../img/owl.png'
+import owl from '../img/owlHeader.png'
 // try to load an image like this: import foo from '../img/foo.png'
 
 // I do not want to steal anyones design or anything

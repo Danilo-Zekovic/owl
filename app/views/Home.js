@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Banner from './components/Banner'
 import Belt from './components/Belt'
 import owl from './img/owl.png'
@@ -13,8 +14,16 @@ const Home = () => (
     </Belt>
 
     <Belt color="orange-belt">
-      <h3 className="text-center">Nice This actually works</h3>
-      <a href="https://github.com/Danilo-Zekovic/owl" target="_blank"><h4>Clone this project from GitHub</h4></a>
+      <div className="row">
+        <h2 className="col-md-10 col-sm-12">Imas problem? Treba ti pomoc?
+          Saznaj kako mozemo da ti pomognemo klikom na plavi uptinik
+        </h2>
+        <div className="col-md-2 col-sm-12 text-center">
+          <Link to='/kontakt'>
+            <h2 className="fa fa-question-circle fa-5x " aria-hidden="true"></h2>
+          </Link>
+        </div>
+      </div>
     </Belt>
 
     <Belt>

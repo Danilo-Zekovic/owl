@@ -12,8 +12,9 @@
 @import "upload.css";
 @import "post.css";
 @import "sidemenu.css";
-@import "home.css"
+/*@import "home.css";*/
 
 /* components */
 @import "banner.css";
 @import "belt.css";
+@import "content.css"

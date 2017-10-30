@@ -1,0 +1,17 @@
+.content-square {
+  background-color: #5746d6;
+  color: white;
+  padding: 4em;
+  margin: 0.5em;
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.content-square a {
+  color: white;
+}
+
+.content-square:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}

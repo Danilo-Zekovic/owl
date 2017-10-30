@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from './components/Banner'
 import Belt from './components/Belt'
+import Content from './components/Content'
 import owl from './img/owl.png'
 
 const Home = () => (
@@ -27,6 +28,10 @@ const Home = () => (
     </Belt>
 
     <Belt>
+      <Content/>
+    </Belt>
+
+    <Belt color="orange-belt">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel imperdiet elit. Donec aliquet est a ullamcorper pulvinar. Sed feugiat, est a vehicula tempus, nisi nibh maximus augue, sed tempus lorem tellus sit amet magna. Donec suscipit vestibulum dignissim. Integer ullamcorper sapien quis urna molestie, sit amet imperdiet tellus imperdiet. Proin sed lacus vitae risus accumsan laoreet. Morbi et nisl metus.</p>
       <p>Donec ut porttitor nisl. Nunc quis feugiat erat. Maecenas leo lacus, convallis lobortis posuere eu, ultricies ullamcorper lorem. Suspendisse vitae laoreet orci. Praesent a lectus et orci cursus tempor. Nullam iaculis vitae velit id congue. Phasellus eleifend id nunc sed semper. Quisque iaculis ligula vitae nisi sodales, vitae dictum neque consequat. Fusce eget lectus orci. Duis cursus sapien id dapibus dignissim. In in felis in neque blandit laoreet. Proin sagittis, magna eu interdum auctor, metus diam dapibus lectus, ac facilisis dui enim aliquet diam. Sed ut lacus iaculis, ornare nulla vel, sollicitudin tellus. Aenean augue velit, tristique eu mauris vel, ornare scelerisque nisi. In porttitor tortor dolor, eu molestie purus sagittis quis. Aenean ultrices pellentesque urna, eget cursus nulla ullamcorper quis.</p>
       <p>Nullam dignissim purus et urna pharetra luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at sapien porta, placerat risus sed, semper massa. Sed tincidunt sodales fringilla. Phasellus vel enim sit amet tortor vulputate consequat vitae et nunc. Donec sit amet maximus arcu. Vivamus lobortis pulvinar ipsum, vel condimentum lacus dignissim mattis. Suspendisse potenti. Nulla nisi eros, convallis ut ligula quis, accumsan congue turpis. Morbi ut tempor lorem. Curabitur luctus, massa in consectetur cursus, mauris velit feugiat risus, sed eleifend nibh sapien nec diam.</p>

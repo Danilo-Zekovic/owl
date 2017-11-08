@@ -5,7 +5,7 @@ const About = () => (
   <div>
     <Banner/>
     <div className='container'>
-      <h1>O Blogu</h1>
+      <h1>O Tajni Problema</h1>
       <blockquote>
         „Tajna problema“ je blog namenjen muškarcima i ženama svih uzrasta, ali pre svega mladima,
         koji se svakodnevno susreću sa mnogobrojnim problemima, a nemaju koga da pitaju za savet.
@@ -15,6 +15,14 @@ const About = () => (
         postavi isto. Sva pitanja će biti objavljena anonimno, osim ukoliko želite da napišete Vaše ime,
         prezime ili nadimak. Potrudiću se da odgovor na postavljeno pitanje dam u najkraćem mogućem
         roku. Radujem se budućim porukama!
+        <footer>Admin „Tajna problema“</footer>
+      </blockquote>
+    </div>
+    <div className='container'>
+      <h1>Misija</h1>
+      <blockquote>
+        Pomoci svim osobama nezavisno od uzrasta, pola, politickog opredeljenja ili bilo
+        koje druge podele, sa njihovim drustvenim, porodicnim ili bilo kojim drugim problemom. (Treba izmeniti jos)
         <footer>Admin „Tajna problema“</footer>
       </blockquote>
     </div>

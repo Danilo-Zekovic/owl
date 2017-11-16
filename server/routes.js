@@ -6,6 +6,7 @@
 */
 
 import passport from 'passport'
+import multer from 'multer'
 
 let auth = function(req, res, next){
   if (!req.isAuthenticated())
@@ -51,6 +52,48 @@ export default function ( router, server ) {
     res.sendFile('index.html', options)
   })
 
+// ==== File of post uploading =================================
+
+  // https://medium.com/ecmastack/uploading-files-with-react-js-and-node-js-e7e6b707f4ef
+  // https://alligator.io/nodejs/uploading-files-multer-express/
+  // https://www.npmjs.com/package/multer
+
+  // configuring Multer to use files directory for storing files
+  // this is important because later we'll need to access file path
+  const storage = multer.diskStorage({
+    destination: './files',
+    filename(req, file, cb) {
+      console.log(req);
+      console.log(file);
+      cb(null, `${new Date()}-${file.originalname}`);
+    },
+  });
+
+  const upload = multer({ storage: storage });
+
+  // upload
+  // express route where we receive files from the client
+  // passing multer middleware
+  router.post('/files', upload.single('file'), (req, res) => {
+    console.log("FILES");
+    console.log(req.body);
+    res.end()
+    /*const file = req.file; // file passed from client
+    const meta = req.body; // all other values passed from the client, like name, etc..
+
+    if (!req.file) {
+      console.log("No file received");
+      return res.send({
+        success: false
+      });
+    } else {
+      console.log('file received');
+      return res.send({
+        success: true
+      })
+    }*/
+  });
+// =============================================================
   // Login
   router.get('/login', function(req, res) {
     res.sendFile('index.html', options)

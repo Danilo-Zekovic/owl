@@ -6,6 +6,7 @@ import Post from './Post'
 import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import axios from 'axios'
 
 import PostHeaderForm from './components/PostHeaderForm'
 
@@ -109,13 +110,44 @@ class Upload extends React.Component {
 
   // this adds the stuff to the db
   addPost(){
-
+    //let data = new FormData();
     let quillPostStr = JSON.stringify(quill.getContents())
+    //data.append('file', quillPostStr);
+    //data.append('name', 'foobar.json');
+    //let data = quill.getContents()
+    //data.append('foobar', quill.getContents(), 'foo.json')
+    let data = new Blob([JSON.stringify(quill.getContents())], {type : 'application/json'})
+    console.log("Data >>>>");
+    console.log(data);
+
+    // why did i even think this would work https://stackoverflow.com/questions/31048215/how-to-create-txt-file-using-javascript-html5
+    let file = window.URL.createObjectURL(data)
+    /*axios.post('/files', data)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));*/
+
+    axios({
+      method: 'post',
+		  url: '/files',
+		  data: {file:file, name:'foo'}
+    })
+    .then(response => {
+      console.log("response >>>>");
+      console.log(response);
+		})
+		.catch(function (error) {
+      console.log("error >>>>");
+		  console.log(error);
+		})
+
+
+
+    /*let quillPostStr = JSON.stringify(quill.getContents())
     this.setState({
       post: quillPostStr
     })
     console.log("<<<< ADD POST >>>>");
-    this.props.mutate({variables:this.state})
+    this.props.mutate({variables:this.state})*/
   }
 
   render(){

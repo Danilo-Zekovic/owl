@@ -110,26 +110,35 @@ class Upload extends React.Component {
 
   // this adds the stuff to the db
   addPost(){
-    //let data = new FormData();
+
     let quillPostStr = JSON.stringify(quill.getContents())
-    //data.append('file', quillPostStr);
-    //data.append('name', 'foobar.json');
+    // ====
+    let data = new FormData();
+    data.append('file', quillPostStr);
+    //data.append('file', quill.getContents(), 'foo.json')
+    data.append('name', 'foobar.json');
+    // ====
     //let data = quill.getContents()
     //data.append('foobar', quill.getContents(), 'foo.json')
-    let data = new Blob([JSON.stringify(quill.getContents())], {type : 'application/json'})
+    //let data = new Blob([JSON.stringify(quill.getContents())], {type : 'application/json'})
     console.log("Data >>>>");
     console.log(data);
 
     // why did i even think this would work https://stackoverflow.com/questions/31048215/how-to-create-txt-file-using-javascript-html5
-    let file = window.URL.createObjectURL(data)
+    //let file = window.URL.createObjectURL(data)
     /*axios.post('/files', data)
       .then(response => console.log(response))
       .catch(error => console.log(error));*/
 
-    axios({
+    /*axios({
       method: 'post',
 		  url: '/files',
-		  data: {file:file, name:'foo'}
+		  data: data//{file:file, name:'foo'}
+    })*/
+    axios.post('/files', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
     .then(response => {
       console.log("response >>>>");

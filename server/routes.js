@@ -7,6 +7,7 @@
 
 import passport from 'passport'
 import multer from 'multer'
+import cb from 'cb'
 
 let auth = function(req, res, next){
   if (!req.isAuthenticated())
@@ -62,7 +63,7 @@ export default function ( router, server ) {
   // this is important because later we'll need to access file path
   const storage = multer.diskStorage({
     destination: './files',
-    filename(req, file, cb) {
+    filename:function(req, file, cb) {
       console.log(req);
       console.log(file);
       cb(null, `${new Date()}-${file.originalname}`);
@@ -74,8 +75,9 @@ export default function ( router, server ) {
   // upload
   // express route where we receive files from the client
   // passing multer middleware
-  router.post('/files', upload.single('file'), (req, res) => {
+  router.post('/files', upload.single('recfile'), (req, res) => {
     console.log("FILES");
+    console.log(req.file);
     console.log(req.body);
     res.end()
     /*const file = req.file; // file passed from client

@@ -8,6 +8,7 @@
 import passport from 'passport'
 import multer from 'multer'
 import cb from 'cb'
+import fs from 'fs'
 
 let auth = function(req, res, next){
   if (!req.isAuthenticated())
@@ -61,7 +62,7 @@ export default function ( router, server ) {
 
   // configuring Multer to use files directory for storing files
   // this is important because later we'll need to access file path
-  const storage = multer.diskStorage({
+  /*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads/')
     },
@@ -70,18 +71,33 @@ export default function ( router, server ) {
       console.log(file);
       cb(null, `${new Date()}-${file.originalname}`);
     },
-  });
+  });*/
 
-  const upload = multer({ storage: storage });
+  /*const upload = multer({ storage: storage });*/
+  let upload = multer({
+    limits:{fieldSize:14*1024*1024}
+  })
 
   // upload
   // express route where we receive files from the client
   // passing multer middleware
-  router.post('/files', upload.single('recfile'), (req, res) => {
+  //router.post('/files', upload.single('recfile'), (req, res) => {
+  router.post('/files', upload.single('file'), (req, res) => {
     console.log("FILES");
-    console.log(req.file);
-    console.log(req.body);
-    res.end()
+    let date = new Date()
+    let uniqueName = './posts/' + date.getTime() + req.body.name
+    //console.log(req.body);
+    fs.writeFile(uniqueName, req.body.file, function(err){
+      if (err){
+        console.log("error while writing file.");
+        console.log(err);
+        res.end()
+      }
+      res.send({
+        name:uniqueName
+      })
+    })
+
     /*const file = req.file; // file passed from client
     const meta = req.body; // all other values passed from the client, like name, etc..
 

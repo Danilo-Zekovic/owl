@@ -83,10 +83,15 @@ export default function ( router, server ) {
   // passing multer middleware
   //router.post('/files', upload.single('recfile'), (req, res) => {
   router.post('/files', upload.single('file'), (req, res) => {
+
+    // TODO add authentication
+    // just call something as in the /loggedin req.isAuthenticated() ? req.user : '0'
     console.log("FILES");
     let date = new Date()
     let uniqueName = './posts/' + date.getTime() + req.body.name
     //console.log(req.body);
+
+    // write the file to posts dir
     fs.writeFile(uniqueName, req.body.file, function(err){
       if (err){
         console.log("error while writing file.");
@@ -97,22 +102,11 @@ export default function ( router, server ) {
         name:uniqueName
       })
     })
-
-    /*const file = req.file; // file passed from client
-    const meta = req.body; // all other values passed from the client, like name, etc..
-
-    if (!req.file) {
-      console.log("No file received");
-      return res.send({
-        success: false
-      });
-    } else {
-      console.log('file received');
-      return res.send({
-        success: true
-      })
-    }*/
   });
+
+  /*router.get('/getPost', function(req, res){
+    fs.readFile
+  })*/
 // =============================================================
   // Login
   router.get('/login', function(req, res) {

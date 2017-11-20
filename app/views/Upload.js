@@ -99,9 +99,9 @@ class Upload extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    console.log(target);
+    /*console.log(target);
     console.log("<<<< INPUT CHANGE >>>>")
-    console.log(this.state);
+    console.log(this.state);*/
 
     this.setState({
       [name]: value
@@ -112,29 +112,15 @@ class Upload extends React.Component {
   addPost(){
 
     let quillPostStr = JSON.stringify(quill.getContents())
+    // post file name
+    let title = this.state.title
+    let name = (title) ? title.replace(' ', '-')+'.json':'noTitle.json'
     // ====
     let data = new FormData();
     data.append('file', quillPostStr);
-    //data.append('file', quill.getContents(), 'foo.json')
-    data.append('name', 'foobar.json');
+    data.append('name', name);
     // ====
-    //let data = quill.getContents()
-    //data.append('foobar', quill.getContents(), 'foo.json')
-    //let data = new Blob([JSON.stringify(quill.getContents())], {type : 'application/json'})
-    console.log("Data >>>>");
-    console.log(data);
 
-    // why did i even think this would work https://stackoverflow.com/questions/31048215/how-to-create-txt-file-using-javascript-html5
-    //let file = window.URL.createObjectURL(data)
-    /*axios.post('/files', data)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));*/
-
-    /*axios({
-      method: 'post',
-		  url: '/files',
-		  data: data//{file:file, name:'foo'}
-    })*/
     axios.post('/files', data, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -142,7 +128,11 @@ class Upload extends React.Component {
     })
     .then(response => {
       console.log("response >>>>");
-      console.log(response);
+      console.log(response.data.name);
+      this.setState({
+        post:response.data.name
+        this.props.mutate({variables:this.state})
+      })
 		})
 		.catch(function (error) {
       console.log("error >>>>");

@@ -138,17 +138,6 @@ class Upload extends React.Component {
       console.log("error >>>>");
 		  console.log(error);
 		})
-
-    /*const callMutate = () => {
-      this.props.mutate({variables:this.state})
-    }*/
-
-    /*let quillPostStr = JSON.stringify(quill.getContents())
-    this.setState({
-      post: quillPostStr
-    })
-    console.log("<<<< ADD POST >>>>");
-    this.props.mutate({variables:this.state})*/
   }
 
   render(){

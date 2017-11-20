@@ -7,7 +7,11 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Loading from './components/Loading'
 import ErrorMessage from './components/Error'
+import axios from 'axios'
 
+/*
+ * TODO probably should turn this into server side rendering
+ */
 
 let quill
 
@@ -16,7 +20,8 @@ class PostBody extends React.Component {
   constructor(props){
     super(props)
     this.state= {
-      text:"Helo World"
+      text:"Helo World",
+      post:""
 
     }
   }
@@ -28,8 +33,27 @@ class PostBody extends React.Component {
       readOnly:true
     })
 
-    //quill.setContents(JSON.parse(this.props.match.params.post))
-    quill.setContents(JSON.parse(this.props.value))
+    //console.log(this.props.value);
+    let postPath =  this.props.value
+
+    // get the post from the server
+    axios.get('/getPost', {
+      params: {
+        post: postPath
+      }
+    })
+    .then(response => {
+      this.setState({
+        post:response.data.post
+      })
+      //quill.setContents(JSON.parse(this.props.match.params.post))
+      quill.setContents(JSON.parse(this.state.post))
+		})
+		.catch(function (error) {
+      console.log("error >>>>");
+		  console.log(error);
+		})
+
   }
 
   render(){

@@ -56,32 +56,14 @@ export default function ( router, server ) {
 
 // ==== File of post uploading =================================
 
-  // https://medium.com/ecmastack/uploading-files-with-react-js-and-node-js-e7e6b707f4ef
-  // https://alligator.io/nodejs/uploading-files-multer-express/
-  // https://www.npmjs.com/package/multer
-
-  // configuring Multer to use files directory for storing files
-  // this is important because later we'll need to access file path
-  /*const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads/')
-    },
-    filename:function(req, file, cb) {
-      console.log(req);
-      console.log(file);
-      cb(null, `${new Date()}-${file.originalname}`);
-    },
-  });*/
-
-  /*const upload = multer({ storage: storage });*/
   let upload = multer({
-    limits:{fieldSize:14*1024*1024}
+    limits:{fieldSize:14*1024*1024} // I think it sets the limit to 14MB
   })
 
   // upload
   // express route where we receive files from the client
   // passing multer middleware
-  //router.post('/files', upload.single('recfile'), (req, res) => {
+  //router.post('/files', upload.single('recfile'), (req, res) => { // old
   router.post('/files', upload.single('file'), (req, res) => {
 
     // TODO add authentication
@@ -104,9 +86,17 @@ export default function ( router, server ) {
     })
   });
 
-  /*router.get('/getPost', function(req, res){
-    fs.readFile
-  })*/
+  // get the post, by passing the parametre post which is the pat to the requested post
+  router.get('/getPost', function(req, res){
+    console.log("GET THE POST");
+    console.log(req.query);
+    fs.readFile(req.query.post, 'utf8', function(err, data) {
+      if(err) {res.status(500).send('Something broke while reading the post!')}
+      res.send({
+        post:data
+      })
+    });
+  })
 // =============================================================
   // Login
   router.get('/login', function(req, res) {

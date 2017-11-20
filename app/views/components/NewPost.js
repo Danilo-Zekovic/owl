@@ -4,6 +4,7 @@ import Quill from 'quill'
 import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import axios from 'axios'
 
 import PostHeaderForm from './PostHeaderForm'
 
@@ -109,11 +110,39 @@ class NewPost extends React.Component {
   addPost(){
 
     let quillPostStr = JSON.stringify(quill.getContents())
+    // post file name
+    let title = this.state.title
+    let name = (title) ? title.replace(' ', '-')+'.json':'noTitle.json'
+    // ====
+    let data = new FormData();
+    data.append('file', quillPostStr);
+    data.append('name', name);
+    // ====
+
+    axios.post('/files', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(response => {
+      console.log("response >>>>");
+      console.log(response.data.name);
+      this.setState({
+        post:response.data.name
+      })
+      this.props.mutate({variables:this.state})
+		})
+		.catch(function (error) {
+      console.log("error >>>>");
+		  console.log(error);
+		})
+
+    /*let quillPostStr = JSON.stringify(quill.getContents())
     this.setState({
       post: quillPostStr
     })
     console.log("<<<< ADD POST >>>>");
-    this.props.mutate({variables:this.state})
+    this.props.mutate({variables:this.state})*/
   }
 
   render(){

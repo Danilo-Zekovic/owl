@@ -65,25 +65,28 @@ export default function ( router, server ) {
   // passing multer middleware
   //router.post('/files', upload.single('recfile'), (req, res) => { // old
   router.post('/files', upload.single('file'), (req, res) => {
+    if (req.isAuthenticated()){
+      // TODO add authentication
+      // just call something as in the /loggedin req.isAuthenticated() ? req.user : '0'
+      console.log("FILES");
+      let date = new Date()
+      let uniqueName = './posts/' + date.getTime() + req.body.name
+      //console.log(req.body);
 
-    // TODO add authentication
-    // just call something as in the /loggedin req.isAuthenticated() ? req.user : '0'
-    console.log("FILES");
-    let date = new Date()
-    let uniqueName = './posts/' + date.getTime() + req.body.name
-    //console.log(req.body);
-
-    // write the file to posts dir
-    fs.writeFile(uniqueName, req.body.file, function(err){
-      if (err){
-        console.log("error while writing file.");
-        console.log(err);
-        res.end()
-      }
-      res.send({
-        name:uniqueName
+      // write the file to posts dir
+      fs.writeFile(uniqueName, req.body.file, function(err){
+        if (err){
+          console.log("error while writing file.");
+          console.log(err);
+          res.end()
+        }
+        res.send({
+          name:uniqueName
+        })
       })
-    })
+    } else {
+      res.end()
+    }
   });
 
   // get the post, by passing the parametre post which is the pat to the requested post

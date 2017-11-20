@@ -6,6 +6,9 @@
 */
 
 import passport from 'passport'
+import multer from 'multer'
+import cb from 'cb'
+import fs from 'fs'
 
 let auth = function(req, res, next){
   if (!req.isAuthenticated())
@@ -51,6 +54,50 @@ export default function ( router, server ) {
     res.sendFile('index.html', options)
   })
 
+// ==== File of post uploading =================================
+
+  let upload = multer({
+    limits:{fieldSize:14*1024*1024} // I think it sets the limit to 14MB
+  })
+
+  // upload
+  // express route where we receive files from the client
+  // passing multer middleware
+  //router.post('/files', upload.single('recfile'), (req, res) => { // old
+  router.post('/files', upload.single('file'), (req, res) => {
+
+    // TODO add authentication
+    // just call something as in the /loggedin req.isAuthenticated() ? req.user : '0'
+    console.log("FILES");
+    let date = new Date()
+    let uniqueName = './posts/' + date.getTime() + req.body.name
+    //console.log(req.body);
+
+    // write the file to posts dir
+    fs.writeFile(uniqueName, req.body.file, function(err){
+      if (err){
+        console.log("error while writing file.");
+        console.log(err);
+        res.end()
+      }
+      res.send({
+        name:uniqueName
+      })
+    })
+  });
+
+  // get the post, by passing the parametre post which is the pat to the requested post
+  router.get('/getPost', function(req, res){
+    console.log("GET THE POST");
+    console.log(req.query);
+    fs.readFile(req.query.post, 'utf8', function(err, data) {
+      if(err) {res.status(500).send('Something broke while reading the post!')}
+      res.send({
+        post:data
+      })
+    });
+  })
+// =============================================================
   // Login
   router.get('/login', function(req, res) {
     res.sendFile('index.html', options)

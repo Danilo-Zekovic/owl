@@ -1,5 +1,6 @@
 # owl
-Blog
+Blog    
+More of a help for people    
 
 ## To run the app
 

@@ -24,7 +24,11 @@ class Header extends React.Component {
   }
 
   handleScroll(event) {
+    console.log("Scrolling..." );
+    console.log(event);
+    console.log(event.srcElement);
     let scrollTop = event.srcElement.body.scrollTop
+    console.log(scrollTop);
     if (scrollTop < 2){
       this.setState({
         transform: "navbar navbar-custom navbar-fixed-top"
